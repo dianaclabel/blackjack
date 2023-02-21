@@ -29,7 +29,6 @@ const crearDeck = () => {
 };
 
 // esta funcion me permite tener una nueva carta
-
 const pedirCarta = () => {
   if (deck.length === 0) {
     throw "No hay cartas en el deck";
@@ -37,10 +36,47 @@ const pedirCarta = () => {
 
   const carta = deck.pop();
 
-  console.log(deck);
+  // console.log(deck);
   console.log(carta); //carta debe ser de la baraja
   return carta;
 };
 
+//-----------------------------codigo largo------------------------------------------------------------------
+
+// const valorCarta = (carta) => {
+//   //el primer caracter se incluye y el ultimo se excluye al utilizar en metodo substring
+//   const valor = carta.substring(0, carta.length - 1);
+
+//   let puntos = 0;
+
+//   //isNaN me permite evaluar si lo que esta dentro es un numero o no.
+//   //la respuesta sera booleano true -> si no es un numero y false -> si es un numero
+//   if (isNaN(valor)) {
+//     console.log("No es un numero");
+
+//     //operador ternario
+//     puntos = valor === "A" ? 11 : 10;
+//   } else {
+//     // console.log("Es un numero ");
+
+//     //Lo multiplo para que mi string '5' se convierta en numero
+//     puntos = valor * 1;
+//   }
+
+//   console.log(puntos);
+// };
+
+//---------------------------------------codigo reducido-----------------------------------------------
+const valorCarta = (carta) => {
+  const valor = carta.substring(0, carta.length - 1);
+
+  return isNaN(valor)
+    ? (puntos = valor === "A" ? 11 : 10)
+    : (puntos = valor * 1);
+};
+
 crearDeck();
-pedirCarta();
+// pedirCarta();
+
+const valor = valorCarta(pedirCarta());
+console.log({ valor });
