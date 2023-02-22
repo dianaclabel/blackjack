@@ -1,43 +1,45 @@
-
-html,body{
-    margin:0px;
-    background-color: #2f4f30;
-    color: white;
+html,
+body {
+  margin: 0px;
+  background-color: #2f4f30;
+  color: white;
 }
 
-.titulo{
-    text-align: center;
-    background-color: black;
-    color: white;
-    padding: 20px;
-    font-size: 25px;
-
+.titulo {
+  text-align: center;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  font-size: 25px;
 }
 
-.sub-title{
-    color: white;
+.sub-title {
+  color: white;
 }
 
-.mt-2, .my-2 {
-    padding-top: 0.5rem;
-   
+.mt-2,
+.my-2 {
+  padding-top: 0.5rem;
 }
 
-.mt-2, .my-2,.row {
-    background-color: #2f4f30;
+.mt-2,
+.my-2,
+.row {
+  background-color: #2f4f30;
 }
 
-.carta{
-    position: relative;
-    width:150px;
-    left:100px ;
-    margin-left: -75px;
+.carta {
+  position: relative;
+  width: 150px;
+  left: 100px;
+  margin-left: -75px;
 }
 
-#computadora-cartas,#jugador-cartas{
-    height: 240px;
+#computadora-cartas,
+#jugador-cartas {
+  height: 240px;
 }
 
-.col{
-    padding-top: 20px;
+.col {
+  padding-top: 20px;
 }
