@@ -7,23 +7,37 @@
 (() => {
   "use strict";
   let deck = [];
-  const tipos = ["C", "D", "H", "S"];
-  const especiales = ["A", "J", "Q", "K"];
+  const tipos = ["C", "D", "H", "S"],
+    especiales = ["A", "J", "Q", "K"];
 
-  let puntosJugador = 0;
-  let puntosComputadora = 0;
+  // let puntosJugador = 0;
+  // let puntosComputadora = 0;
+
+  let puntosJugadores = [];
 
   //referencias del HTML
-  const btnPedir = document.querySelector("#btnPedir");
-  const btnDetener = document.querySelector("#btnDetener");
-  const btnNuevoJuego = document.querySelector("#btnNuevo");
+  const btnPedir = document.querySelector("#btnPedir"),
+    btnDetener = document.querySelector("#btnDetener"),
+    btnNuevoJuego = document.querySelector("#btnNuevo");
 
-  const divCartasJugador = document.querySelector("#jugador-cartas");
-  const divCartasComputadora = document.querySelector("#computadora-cartas");
-  const puntajeSmalls = document.querySelectorAll("small");
+  const divCartasJugador = document.querySelector("#jugador-cartas"),
+    divCartasComputadora = document.querySelector("#computadora-cartas"),
+    puntajeSmalls = document.querySelectorAll("small");
+
+  //Esta funcion inicializa el juego.
+  const inicializarJuego = (numJugadores = 2) => {
+    deck = crearDeck();
+
+    for (let i = 0; i < numJugadores; i++) {
+      puntosJugadores.push(0);
+    }
+
+    console.log({ puntosJugadores });
+  };
 
   // esta funcion crea una nueva baraja
   const crearDeck = () => {
+    deck = [];
     for (let i = 2; i <= 10; i++) {
       for (let tipo of tipos) {
         deck.push(i + tipo);
@@ -35,10 +49,8 @@
         deck.push(especial + tipo);
       }
     }
-    //   console.log(deck);
-    deck = _.shuffle(deck);
-    console.log(deck);
-    return deck;
+
+    return _.shuffle(deck);
   };
 
   // esta funcion me permite tener una nueva carta
@@ -47,11 +59,11 @@
       throw "No hay cartas en el deck";
     }
 
-    const carta = deck.pop();
+    // const carta = deck.pop();
 
     // console.log(deck);
     //carta debe ser de la baraja
-    return carta;
+    return deck.pop();
   };
 
   //-----------------------------codigo largo------------------------------------------------------------------
@@ -83,19 +95,17 @@
   const valorCarta = (carta) => {
     const valor = carta.substring(0, carta.length - 1);
 
-    return isNaN(valor)
-      ? (puntos = valor === "A" ? 11 : 10)
-      : (puntos = valor * 1);
+    return isNaN(valor) ? (valor === "A" ? 11 : 10) : valor * 1;
   };
 
-  crearDeck();
   // pedirCarta();
 
   // const valor = valorCarta(pedirCarta());
   // console.log({ valor });
 
-  //turno de la computadora---------------------------------------------------
+  const acumularPuntos = () => {};
 
+  //turno de la computadora---------------------------------------------------
   const turnoComputadora = (puntosMinimos) => {
     do {
       const carta = pedirCarta();
@@ -164,8 +174,10 @@
 
   btnNuevoJuego.addEventListener("click", () => {
     console.clear();
-    deck = [];
-    deck = crearDeck();
+
+    inicializarJuego();
+    // deck = [];
+    // deck = crearDeck();
 
     puntosJugador = 0;
     puntosComputadora = 0;
