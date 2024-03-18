@@ -1,6 +1,6 @@
 /*
 2C =Two of Clubs
-2D =Two of Diaminds
+2D =Two of Diamonds
 2H =Two of Hearts
 2S =Two of Spades
 */
@@ -50,6 +50,8 @@
       }
     }
 
+    //-.Shuffle es una funcion de underscore que lo instalamos a traves de un CND
+    // Nos devuelve el array creado de forma desordenado.
     return _.shuffle(deck);
   };
 
