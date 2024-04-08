@@ -18,8 +18,12 @@
     <div class="row">
       <div id="divBotones" class="col text-center">
         <button id="btnNuevo" class="btn btn-danger">Nuevo juego</button>
-        <button id="btnPedir" class="btn btn-primary">Pedir carta</button>
-        <button id="btnDetener" class="btn btn-primary">Detener</button>
+        <button id="btnPedir" disabled="disabled" class="btn btn-primary">
+          Pedir carta
+        </button>
+        <button id="btnDetener" disabled="disabled" class="btn btn-primary">
+          Detener
+        </button>
       </div>
     </div>
     <div class="row">
@@ -42,5 +46,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
     <script src="./assets/main/juego.js"></script>
+    <script>
+      console.log(miModulo);
+      miModulo.nuevoJuego();
+    </script>
   </body>
 </html>

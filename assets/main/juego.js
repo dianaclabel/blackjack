@@ -8,14 +8,11 @@
 // es una funcion autoinvocada
 // cuando quiero desde el inspector de elemento accder a una varible no me va a dar el resultado.
 //porque es una forma de proteger lo que esta dentro d ela función autoinvocada.
-(() => {
+const miModulo = (() => {
   "use strict";
   let deck = [];
   const tipos = ["C", "D", "H", "S"],
     especiales = ["A", "J", "Q", "K"];
-
-  // let puntosJugador = 0;
-  // let puntosComputadora = 0;
 
   let puntosJugadores = [];
 
@@ -38,6 +35,7 @@
     }
 
     puntosHTML.forEach((element) => (element.innerText = 0));
+    divCartasJugadores.forEach((element) => (element.innerHTML = ""));
 
     btnPedir.disabled = false;
     btnDetener.disabled = false;
@@ -75,31 +73,6 @@
     //carta debe ser de la baraja
     return deck.pop();
   };
-
-  //-----------------------------codigo largo------------------------------------------------------------------
-
-  // const valorCarta = (carta) => {
-  //   //el primer caracter se incluye y el ultimo se excluye al utilizar en metodo substring
-  //   const valor = carta.substring(0, carta.length - 1);
-
-  //   let puntos = 0;
-
-  //   //isNaN me permite evaluar si lo que esta dentro es un numero o no.
-  //   //la respuesta sera booleano true -> si no es un numero y false -> si es un numero
-  //   if (isNaN(valor)) {
-  //     console.log("No es un numero");
-
-  //     //operador ternario
-  //     puntos = valor === "A" ? 11 : 10;
-  //   } else {
-  //     // console.log("Es un numero ");
-
-  //     //Lo multiplo para que mi string '5' se convierta en numero
-  //     puntos = valor * 1;
-  //   }
-
-  //   console.log(puntos);
-  // };
 
   //---------------------------------------codigo reducido-----------------------------------------------
   const valorCarta = (carta) => {
@@ -153,24 +126,17 @@
       puntosComputadora = acumularPuntos(carta, puntosJugadores.length - 1);
 
       crearCarta(carta, puntosJugadores.length - 1);
-
-      // const imgCarta = document.createElement("img");
-      // imgCarta.src = `assets/cartas/${carta}.png`;
-      // imgCarta.classList.add("carta");
-      // divCartasComputadora.append(imgCarta);
-
-      if (puntosMinimos > 21) {
-        break;
-      }
     } while (puntosComputadora < puntosMinimos && puntosMinimos <= 21);
 
     determinarGanador();
   };
 
   //Eventos--------------------------------------------------------------
+
   btnPedir.addEventListener("click", () => {
     const carta = pedirCarta();
     const puntosJugador = acumularPuntos(carta, 0);
+
     crearCarta(carta, 0);
 
     if (puntosJugador > 21) {
@@ -188,27 +154,14 @@
     btnPedir.disabled = true;
     btnDetener.disabled = true;
 
-    turnoComputadora(puntosJugador);
+    turnoComputadora(puntosJugadores[0]);
   });
-  // Forma corta de recargar ----------------------------
-  // btnNuevoJuego.addEventListener("click", () => {
-  //   location.reload();
-  // });
-
-  //------------------------------------------------------
 
   btnNuevoJuego.addEventListener("click", () => {
     inicializarJuego();
   });
 
-  //codigo de logica de compañero-------------------------
-
-  // if (puntosJugador === puntosComputadora){
-  //   alert('Tablas!!');
-  // }
-  // else if (puntosJugador > puntosComputadora && puntosJugador <= 21  || puntosComputadora > 21){
-  //   alert('Ganaste!!!');
-  // }else if (puntosJugador < puntosComputadora && puntosComputadora <= 21 || puntosJugador > 21){
-  //   alert('Perdiste!!!');
-  // }
+  return {
+    nuevoJuego: inicializarJuego,
+  };
 })();
